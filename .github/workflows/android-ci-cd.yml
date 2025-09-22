@@ -40,7 +40,8 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug -Pgpr.user=$GPR_USER -Pgpr.key=$GPR_KEY
+        run: ./gradlew assembleDebug -Pgpr.user=$GPR_USER -Pgpr.key=$GPR_KEY --stacktrace
+
 
       - name: Run Lint
         run: ./gradlew lint
