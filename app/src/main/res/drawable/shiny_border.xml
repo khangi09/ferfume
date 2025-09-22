@@ -1,0 +1,14 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/transparent"/> <!-- Transparent background -->
+    <stroke
+        android:color="@android:color/white"
+    android:width="4dp"/>
+    <corners android:radius="8dp"/> <!-- Optional: Rounded corners -->
+
+    <!-- Animated gradient for a shiny effect -->
+    <gradient
+        android:startColor="#FFD700"
+    android:centerColor="#FFF5C2"
+    android:endColor="#FFD700"
+    android:angle="45" /> <!-- Direction of the gradient -->
+</shape>
