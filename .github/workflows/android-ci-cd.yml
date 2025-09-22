@@ -12,9 +12,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      GPR_USER: ${{ secrets.GPR_USER }}
       GPR_KEY: ${{ secrets.GPR_KEY }}
       FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
       FIREBASE_AUTH_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+
     steps:
       - uses: actions/checkout@v3
 
@@ -38,7 +40,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug -Pgpr.key=$GPR_KEY
+        run: ./gradlew assembleDebug -Pgpr.user=$GPR_USER -Pgpr.key=$GPR_KEY
 
       - name: Run Lint
         run: ./gradlew lint
