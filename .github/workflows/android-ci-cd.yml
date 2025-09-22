@@ -1,0 +1,34 @@
+name: Android CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GPR_KEY: ${{ secrets.GPR_KEY }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug -Pgpr.key=$GPR_KEY
+
+      - name: Run Lint
+        run: ./gradlew lint
+
+      - name: Run Detekt (Static Code Analysis)
+        run: ./gradlew detekt
+
+      - name: Run Dependency Check (Security Scan)
+        run: ./gradlew dependencyCheckAnalyze
