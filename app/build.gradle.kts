@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.gms.google-services")
+    id("io.gitlab.arturbosch.detekt") version "1.23.6"
 }
 
 android {
@@ -46,6 +47,14 @@ android {
         kotlinCompilerExtensionVersion = "1.5.10"
     }
 }
+
+// ✅ Move detekt config OUTSIDE android { }
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
+    ignoreFailures = true // <--- THIS prevents build failure
+}
+
 
 
 
